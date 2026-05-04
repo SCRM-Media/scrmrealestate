@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --re-blue: #1C3A5E;
+  --re-ivory: #F8F6F1;
+  --re-ink: #1A1A1A;
+  --re-stone: #8A8680;
+  --re-stone-light: #E8E5DF;
+  --re-blue-accent: #3B6FAA;
+  --re-blue-light: #EDF2F8;
+  --re-gold-thin: #C4A96C;
+
+  --topbar-h: 36px;
+  --header-h: 76px;
+  --shell-h: calc(var(--topbar-h) + var(--header-h));
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-h: 88px;
+  }
+}
+
+html, body {
+  background: var(--re-ivory);
+  color: var(--re-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Section label utility */
+.label-eyebrow {
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--re-blue-accent);
+}
+
+/* Display heading defaults */
+.h-display {
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+/* Subtle horizontal scrollbar styling for category bar */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

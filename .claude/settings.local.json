@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(mkdir -p /tmp/scrm-media-backup)",
+      "Bash(mv Agency Landscape \"Listing Photos\" Vertical /tmp/scrm-media-backup/)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack --use-npm --yes)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack --use-npm --name scrmrealestate --yes)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w 'HTTP %{http_code}\\\\n' http://localhost:3000__TRACKED_VAR__)",
+      "Bash(/usr/bin/file public/logo.png)",
+      "Bash(/usr/bin/sips -g pixelWidth -g pixelHeight public/logo.png)",
+      "Bash(brew install *)",
+      "Bash(git init *)",
+      "Bash(vercel --version)",
+      "Bash(/usr/bin/sips -Z 1600 -c 630 1200 public/media/listings/listing-01.png --out public/og.jpg --setProperty format jpeg)",
+      "Bash(git config *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Initial commit: SCRM Media Real Estate marketing site *)",
+      "Bash(git reset *)",
+      "Bash(grep -E \"\\\\.\\(mp4|mov\\)$\")",
+      "Bash(rm -rf supabase/.temp supabase/.branches)",
+      "Bash(rm -f public/media/.DS_Store public/media/listings/.DS_Store)"
+    ]
+  }
+}

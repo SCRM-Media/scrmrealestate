@@ -22,7 +22,27 @@
       "Bash(git reset *)",
       "Bash(grep -E \"\\\\.\\(mp4|mov\\)$\")",
       "Bash(rm -rf supabase/.temp supabase/.branches)",
-      "Bash(rm -f public/media/.DS_Store public/media/listings/.DS_Store)"
+      "Bash(rm -f public/media/.DS_Store public/media/listings/.DS_Store)",
+      "Bash(gh auth *)",
+      "Bash(gh repo *)",
+      "Bash(vercel login *)",
+      "Bash(vercel whoami *)",
+      "Bash(vercel link *)",
+      "Bash(vercel projects *)",
+      "Bash(vercel --yes --name scrmrealestate)",
+      "Bash(vercel git *)",
+      "Bash(vercel ls *)",
+      "Bash(vercel build *)",
+      "Bash(vercel pull *)",
+      "Bash(vercel env *)",
+      "Bash(ffmpeg -version)",
+      "Bash(git fsck *)",
+      "Bash(git remote *)",
+      "Bash(git fetch *)",
+      "Bash(chmod +x scripts/compress-videos.sh)",
+      "Bash(bash scripts/compress-videos.sh)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }

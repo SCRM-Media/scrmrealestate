@@ -45,7 +45,7 @@ const items: Item[] = [
   },
   {
     type: "video",
-    src: `${MEDIA_BASE_URL}/vertical/vertical-4-bed-ad.mov`,
+    src: `${MEDIA_BASE_URL}/vertical/vertical-4-bed-ad.mp4`,
     category: "vertical",
     aspect: "aspect-[9/16]",
   },
@@ -63,13 +63,13 @@ const items: Item[] = [
   },
   {
     type: "video",
-    src: `${MEDIA_BASE_URL}/agency/peter-strata-informative.mov`,
+    src: `${MEDIA_BASE_URL}/agency/peter-strata-informative.mp4`,
     category: "agency",
     aspect: "aspect-[9/16]",
   },
   {
     type: "video",
-    src: `${MEDIA_BASE_URL}/agency/favourite-person-mgm-martin.mov`,
+    src: `${MEDIA_BASE_URL}/agency/favourite-person-mgm-martin.mp4`,
     category: "agency",
     aspect: "aspect-[9/16]",
   },

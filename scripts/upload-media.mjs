@@ -28,7 +28,7 @@ if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 const BUCKET = "media";
-const ROOT = "public/media";
+const ROOT = "public/media-web";
 const FOLDERS = ["agency", "landscape", "vertical"];
 
 function walk(dir) {
@@ -56,7 +56,7 @@ async function ensureBucket() {
     console.log(`Creating bucket "${BUCKET}" (public)…`);
     const { error } = await supabase.storage.createBucket(BUCKET, {
       public: true,
-      fileSizeLimit: 524288000, // 500 MB
+      fileSizeLimit: 52428800, // 50 MB (free tier max)
     });
     if (error) throw error;
   }

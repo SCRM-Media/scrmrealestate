@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Container, Eyebrow, H2, CTAButton, Section } from "@/components/ui";
+import { Reveal, Stagger, StaggerChild } from "@/components/Reveal";
 import FAQAccordion from "@/components/FAQAccordion";
 
 export const metadata: Metadata = {
@@ -103,15 +104,17 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-re-ink/30 via-re-ink/55 to-re-ink/85" />
         </div>
         <Container className="relative w-full pb-16 md:pb-24">
-          <Eyebrow>
-            <span className="!text-white/85">Services</span>
-          </Eyebrow>
-          <h1 className="mt-3 h-display text-5xl md:text-6xl text-white max-w-3xl">
-            One studio. Every layer of your real estate brand.
-          </h1>
-          <p className="mt-5 text-white/80 max-w-2xl text-lg">
-            From your monthly content rhythm to the photography on your next listing — designed and produced by a single team.
-          </p>
+          <Reveal>
+            <Eyebrow>
+              <span className="!text-white/85">Services</span>
+            </Eyebrow>
+            <h1 className="mt-3 h-display text-5xl md:text-6xl text-white max-w-3xl">
+              One studio. Every layer of your real estate brand.
+            </h1>
+            <p className="mt-5 text-white/80 max-w-2xl text-lg">
+              From your monthly content rhythm to the photography on your next listing — designed and produced by a single team.
+            </p>
+          </Reveal>
         </Container>
       </section>
 
@@ -120,12 +123,12 @@ export default function ServicesPage() {
         <Section id={s.id} key={s.id} className={s.reverse ? "bg-white border-y border-re-stone-light" : ""}>
           <Container>
             <div className={`grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-center ${s.reverse ? "md:[direction:rtl]" : ""}`}>
-              <div className="md:col-span-7 [direction:ltr]">
-                <div className="relative aspect-[4/3] overflow-hidden bg-re-stone-light">
-                  <Image src={s.image} alt={s.title} fill sizes="(min-width: 768px) 60vw, 100vw" className="object-cover" />
+              <Reveal direction={s.reverse ? "right" : "left"} className="md:col-span-7 [direction:ltr]">
+                <div className="relative aspect-[4/3] overflow-hidden bg-re-stone-light group">
+                  <Image src={s.image} alt={s.title} fill sizes="(min-width: 768px) 60vw, 100vw" className="object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]" />
                 </div>
-              </div>
-              <div className="md:col-span-5 [direction:ltr]">
+              </Reveal>
+              <Reveal direction={s.reverse ? "left" : "right"} className="md:col-span-5 [direction:ltr]">
                 <Eyebrow>{s.eyebrow}</Eyebrow>
                 <h2 className="mt-3 h-display text-3xl md:text-4xl text-re-ink">{s.title}</h2>
                 <p className="mt-5 text-re-stone leading-relaxed">{s.body}</p>
@@ -152,7 +155,7 @@ export default function ServicesPage() {
                     Talk to us about this
                   </CTAButton>
                 </div>
-              </div>
+              </Reveal>
             </div>
           </Container>
         </Section>
@@ -162,7 +165,7 @@ export default function ServicesPage() {
       <Section dark>
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
-            <div className="md:col-span-4">
+            <Reveal direction="up" className="md:col-span-4">
               <Eyebrow light>FAQ</Eyebrow>
               <H2 light className="mt-3">
                 Common questions, answered.
@@ -170,10 +173,10 @@ export default function ServicesPage() {
               <p className="mt-5 text-white/70 leading-relaxed">
                 Still unsure if we're a fit? A 30-minute call is the fastest way to find out.
               </p>
-            </div>
-            <div className="md:col-span-8">
+            </Reveal>
+            <Reveal direction="up" className="md:col-span-8" delay={0.15}>
               <FAQAccordion items={faqs} />
-            </div>
+            </Reveal>
           </div>
         </Container>
       </Section>
@@ -181,19 +184,21 @@ export default function ServicesPage() {
       {/* FINAL CTA */}
       <Section className="bg-re-ivory">
         <Container>
-          <div className="max-w-3xl">
-            <Eyebrow>Next step</Eyebrow>
-            <H2 className="mt-3">Find the right service for your agency.</H2>
-            <p className="mt-5 text-re-stone text-lg">
-              We'll review your current content, your goals, and where the highest-leverage move is right now — before you commit to anything.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <CTAButton href="/contact">Book a strategy call</CTAButton>
-              <CTAButton href="/packages" variant="outline">
-                See packages
-              </CTAButton>
+          <Reveal>
+            <div className="max-w-3xl">
+              <Eyebrow>Next step</Eyebrow>
+              <H2 className="mt-3">Find the right service for your agency.</H2>
+              <p className="mt-5 text-re-stone text-lg">
+                We'll review your current content, your goals, and where the highest-leverage move is right now — before you commit to anything.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <CTAButton href="/contact">Book a strategy call</CTAButton>
+                <CTAButton href="/packages" variant="outline">
+                  See packages
+                </CTAButton>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </Section>
     </>

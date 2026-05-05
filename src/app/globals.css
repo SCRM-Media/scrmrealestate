@@ -59,3 +59,26 @@ button, a {
 /* Subtle horizontal scrollbar styling for category bar */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-25%); }
+}
+
+@keyframes scrollHint {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(140%); }
+}
+
+@keyframes heroZoom {
+  0%, 100% { transform: scale(1.03); }
+  50%      { transform: scale(1.10); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[marquee_38s_linear_infinite\],
+  .animate-\[heroZoom_24s_ease-in-out_infinite\],
+  .animate-\[scrollHint_1\.8s_cubic-bezier\(0\.22\,1\,0\.36\,1\)_infinite\] {
+    animation: none !important;
+  }
+}

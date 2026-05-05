@@ -1,73 +1,82 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container, Eyebrow, H2, CTAButton, Section } from "@/components/ui";
+import { Reveal, Stagger, StaggerChild } from "@/components/Reveal";
+import HeroVideo from "@/components/HeroVideo";
 
 export default function HomePage() {
   return (
     <>
       {/* HERO */}
       <section className="relative -mt-[var(--shell-h)] pt-[var(--shell-h)] min-h-[100svh] flex items-end overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/media/listings/listing-01.png"
-            alt="Premium luxury property"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-re-ink/30 via-re-ink/55 to-re-ink/85" />
-        </div>
+        <HeroVideo />
         <Container className="relative w-full pb-16 md:pb-24">
-          <div className="max-w-3xl">
-            <span className="label-eyebrow !text-white/85">SCRM Media · Real Estate</span>
-            <h1 className="mt-4 h-display text-5xl md:text-7xl text-white">
-              Premium content systems for luxury real estate.
-            </h1>
-            <p className="mt-6 text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed">
-              We help boutique agencies, top-performing agents, and developers build a consistent, editorial brand presence that earns trust before the first call.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <CTAButton href="/contact">Book a strategy call</CTAButton>
-              <CTAButton href="/work" variant="outline-light">
-                See our work
-              </CTAButton>
+          <Reveal direction="up">
+            <div className="max-w-3xl">
+              <span className="label-eyebrow !text-white/85">SCRM Media · Real Estate</span>
+              <h1 className="mt-4 h-display text-5xl md:text-7xl text-white">
+                Premium content systems
+                <br />
+                for luxury real estate.
+              </h1>
+              <p className="mt-6 text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed">
+                We help boutique agencies, top-performing agents, and developers build a consistent, editorial brand presence that earns trust before the first call.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center gap-4">
+                <CTAButton href="/contact">Book a strategy call</CTAButton>
+                <CTAButton href="/work" variant="outline-light">
+                  See our work
+                </CTAButton>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </Container>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center text-white/65 text-[10px] tracking-[0.3em] uppercase">
+          <span>Scroll</span>
+          <span className="mt-2 block h-10 w-px bg-white/40 overflow-hidden relative">
+            <span className="absolute top-0 left-0 right-0 h-4 bg-white animate-[scrollHint_1.8s_cubic-bezier(0.22,1,0.36,1)_infinite]" />
+          </span>
+        </div>
       </section>
 
-      {/* TRUST BAR */}
-      <section className="bg-re-blue text-white">
-        <Container className="py-8 md:py-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 text-center">
-            {[
-              { v: "35+", l: "Accounts Managed" },
-              { v: "1.5M+", l: "Organic Views" },
-              { v: "$14", l: "Avg. Cost Per Lead" },
-              { v: "AU", l: "Australia-Wide" },
-            ].map((s) => (
-              <div key={s.l}>
-                <p className="font-serif text-3xl md:text-4xl text-white">{s.v}</p>
-                <p className="mt-1 label-eyebrow !text-white/65">{s.l}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      {/* MARQUEE STRIP */}
+      <div className="bg-re-blue text-white/60 overflow-hidden border-y border-white/10">
+        <div className="flex animate-[marquee_38s_linear_infinite] py-4 whitespace-nowrap label-eyebrow !text-white/55">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="flex items-center gap-10 px-5 shrink-0">
+              <span>Boutique Agencies</span>
+              <span className="text-re-gold-thin">◆</span>
+              <span>Top-Performing Agents</span>
+              <span className="text-re-gold-thin">◆</span>
+              <span>Property Developers</span>
+              <span className="text-re-gold-thin">◆</span>
+              <span>Luxury Listings</span>
+              <span className="text-re-gold-thin">◆</span>
+              <span>Editorial Content</span>
+              <span className="text-re-gold-thin">◆</span>
+              <span>Australia-Wide</span>
+              <span className="text-re-gold-thin">◆</span>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* THREE PILLARS */}
       <Section>
         <Container>
-          <div className="max-w-2xl">
-            <Eyebrow>What we do</Eyebrow>
-            <H2 className="mt-3">Three pillars. One coherent brand.</H2>
-            <p className="mt-5 text-re-stone text-lg leading-relaxed">
-              Most agencies post. The strongest agencies build a system. Ours is built around three pillars that work together — not independently.
-            </p>
-          </div>
+          <Reveal>
+            <div className="max-w-2xl">
+              <Eyebrow>What we do</Eyebrow>
+              <H2 className="mt-3">Three pillars. One coherent brand.</H2>
+              <p className="mt-5 text-re-stone text-lg leading-relaxed">
+                Most agencies post. The strongest agencies build a system. Ours is built around three pillars that work together — not independently.
+              </p>
+            </div>
+          </Reveal>
 
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-px bg-re-stone-light border border-re-stone-light">
+          <Stagger className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-px bg-re-stone-light border border-re-stone-light">
             {[
               {
                 t: "Social Media",
@@ -85,36 +94,40 @@ export default function HomePage() {
                 i: "03",
               },
             ].map((p) => (
-              <div key={p.t} className="bg-re-ivory p-8 md:p-10">
+              <StaggerChild key={p.t} className="bg-re-ivory p-8 md:p-10 group transition-colors hover:bg-white">
                 <span className="font-serif text-re-blue-accent text-2xl">{p.i}</span>
                 <h3 className="mt-6 font-serif text-2xl md:text-3xl text-re-ink">{p.t}</h3>
                 <p className="mt-3 text-re-stone leading-relaxed">{p.d}</p>
                 <Link
                   href="/services"
-                  className="mt-6 inline-flex items-center gap-2 text-sm text-re-blue hover:text-re-blue-accent transition-colors"
+                  className="mt-6 inline-flex items-center gap-2 text-sm text-re-blue group-hover:text-re-blue-accent transition-colors"
                 >
-                  Learn more <span aria-hidden>→</span>
+                  Learn more
+                  <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">→</span>
                 </Link>
-              </div>
+              </StaggerChild>
             ))}
-          </div>
+          </Stagger>
         </Container>
       </Section>
 
       {/* PACKAGES PREVIEW */}
       <Section className="bg-white border-y border-re-stone-light">
         <Container>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-            <div className="max-w-xl">
-              <Eyebrow>Packages</Eyebrow>
-              <H2 className="mt-3">Built for the way agencies actually grow.</H2>
+          <Reveal>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+              <div className="max-w-xl">
+                <Eyebrow>Packages</Eyebrow>
+                <H2 className="mt-3">Built for the way agencies actually grow.</H2>
+              </div>
+              <Link href="/packages" className="group inline-flex items-center gap-2 text-sm text-re-blue hover:text-re-blue-accent transition-colors">
+                View all packages
+                <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+              </Link>
             </div>
-            <Link href="/packages" className="text-sm text-re-blue hover:text-re-blue-accent transition-colors">
-              View all packages →
-            </Link>
-          </div>
+          </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6" staggerChildren={0.1}>
             {[
               {
                 t: "Minimum Management",
@@ -139,12 +152,12 @@ export default function HomePage() {
                 featured: true,
               },
             ].map((pkg) => (
-              <div
+              <StaggerChild
                 key={pkg.t}
-                className={`relative p-8 md:p-10 border transition ${
+                className={`relative p-8 md:p-10 border transition-all duration-500 ${
                   pkg.featured
-                    ? "bg-re-blue text-white border-re-blue"
-                    : "bg-re-ivory border-re-stone-light hover:border-re-blue/40 hover:shadow-[0_8px_30px_rgba(28,58,94,0.06)]"
+                    ? "bg-re-blue text-white border-re-blue hover:shadow-[0_24px_60px_rgba(28,58,94,0.25)]"
+                    : "bg-re-ivory border-re-stone-light hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(28,58,94,0.08)] hover:border-re-blue/40"
                 }`}
               >
                 {pkg.featured && (
@@ -170,52 +183,55 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </StaggerChild>
             ))}
-          </div>
+          </Stagger>
         </Container>
       </Section>
 
       {/* WORK GALLERY PREVIEW */}
       <Section>
         <Container>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-            <div>
-              <Eyebrow>Recent work</Eyebrow>
-              <H2 className="mt-3">A look at what we produce.</H2>
+          <Reveal>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+              <div>
+                <Eyebrow>Recent work</Eyebrow>
+                <H2 className="mt-3">A look at what we produce.</H2>
+              </div>
+              <Link href="/work" className="group inline-flex items-center gap-2 text-sm text-re-blue hover:text-re-blue-accent transition-colors">
+                See full gallery
+                <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+              </Link>
             </div>
-            <Link href="/work" className="text-sm text-re-blue hover:text-re-blue-accent transition-colors">
-              See full gallery →
-            </Link>
-          </div>
+          </Reveal>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4" staggerChildren={0.05}>
             {[2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
-              <div
-                key={n}
-                className="relative aspect-[4/5] overflow-hidden bg-re-stone-light"
-              >
+              <StaggerChild key={n} className="relative aspect-[4/5] overflow-hidden bg-re-stone-light group">
                 <Image
                   src={`/media/listings/listing-${String(n).padStart(2, "0")}.png`}
                   alt={`Listing ${n}`}
                   fill
                   sizes="(min-width: 768px) 25vw, 50vw"
-                  className="object-cover transition-transform duration-700 hover:scale-[1.04]"
+                  className="object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
                 />
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-re-ink/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </StaggerChild>
             ))}
-          </div>
+          </Stagger>
         </Container>
       </Section>
 
       {/* PROCESS */}
       <Section className="bg-re-ivory border-y border-re-stone-light">
         <Container>
-          <div className="max-w-2xl">
-            <Eyebrow>Process</Eyebrow>
-            <H2 className="mt-3">How we partner with you.</H2>
-          </div>
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14">
+          <Reveal>
+            <div className="max-w-2xl">
+              <Eyebrow>Process</Eyebrow>
+              <H2 className="mt-3">How we partner with you.</H2>
+            </div>
+          </Reveal>
+          <Stagger className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14" staggerChildren={0.12}>
             {[
               {
                 n: "01",
@@ -233,20 +249,20 @@ export default function HomePage() {
                 d: "We measure what's working, double down, and add channels — paid social, vertical, drone — when the time is right.",
               },
             ].map((s) => (
-              <div key={s.n} className="border-t border-re-stone-light/80 pt-6">
+              <StaggerChild key={s.n} className="border-t border-re-stone-light/80 pt-6">
                 <p className="font-serif text-3xl text-re-blue-accent">{s.n}</p>
                 <h3 className="mt-3 font-serif text-2xl text-re-ink">{s.t}</h3>
                 <p className="mt-3 text-re-stone leading-relaxed">{s.d}</p>
-              </div>
+              </StaggerChild>
             ))}
-          </div>
+          </Stagger>
         </Container>
       </Section>
 
       {/* TESTIMONIALS */}
       <Section>
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-10" staggerChildren={0.15}>
             {[
               {
                 q: "Our enquiry quality changed almost immediately. Sellers come in already understanding our process.",
@@ -257,36 +273,40 @@ export default function HomePage() {
                 a: "Director, Sales & Property Management",
               },
             ].map((t) => (
-              <figure key={t.a} className="border border-re-stone-light p-8 md:p-10 bg-white">
-                <span className="font-serif text-5xl text-re-blue-accent leading-none">“</span>
-                <blockquote className="mt-2 font-serif text-2xl md:text-[28px] text-re-ink leading-snug">
-                  {t.q}
-                </blockquote>
-                <figcaption className="mt-6 label-eyebrow">{t.a}</figcaption>
-              </figure>
+              <StaggerChild key={t.a}>
+                <figure className="border border-re-stone-light p-8 md:p-10 bg-white h-full transition-shadow duration-500 hover:shadow-[0_24px_60px_rgba(28,58,94,0.08)]">
+                  <span className="font-serif text-5xl text-re-blue-accent leading-none">“</span>
+                  <blockquote className="mt-2 font-serif text-2xl md:text-[28px] text-re-ink leading-snug">
+                    {t.q}
+                  </blockquote>
+                  <figcaption className="mt-6 label-eyebrow">{t.a}</figcaption>
+                </figure>
+              </StaggerChild>
             ))}
-          </div>
+          </Stagger>
         </Container>
       </Section>
 
       {/* FINAL CTA */}
       <Section dark className="!py-24">
         <Container>
-          <div className="max-w-3xl">
-            <Eyebrow light>Ready to look like the agency you actually are?</Eyebrow>
-            <H2 light className="mt-3">
-              Let's build a content system worth trusting.
-            </H2>
-            <p className="mt-5 text-white/75 text-lg max-w-2xl">
-              A 30-minute call is enough to map what your content should look like over the next 90 days. No pressure, no template pitch.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <CTAButton href="/contact">Book a call</CTAButton>
-              <CTAButton href="/packages" variant="outline-light">
-                View packages
-              </CTAButton>
+          <Reveal>
+            <div className="max-w-3xl">
+              <Eyebrow light>Ready to look like the agency you actually are?</Eyebrow>
+              <H2 light className="mt-3">
+                Let's build a content system worth trusting.
+              </H2>
+              <p className="mt-5 text-white/75 text-lg max-w-2xl">
+                A 30-minute call is enough to map what your content should look like over the next 90 days. No pressure, no template pitch.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center gap-4">
+                <CTAButton href="/contact">Book a call</CTAButton>
+                <CTAButton href="/packages" variant="outline-light">
+                  View packages
+                </CTAButton>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </Section>
     </>

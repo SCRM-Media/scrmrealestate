@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Container, Eyebrow, H2, CTAButton, Section } from "@/components/ui";
+import { Reveal, Stagger, StaggerChild } from "@/components/Reveal";
 import FAQAccordion from "@/components/FAQAccordion";
 
 export const metadata: Metadata = {
@@ -119,27 +120,29 @@ export default function PackagesPage() {
       {/* HERO */}
       <section className="bg-re-blue text-white">
         <Container className="py-20 md:py-28">
-          <Eyebrow light>Packages & pricing</Eyebrow>
-          <h1 className="mt-3 h-display text-5xl md:text-6xl text-white max-w-3xl">
-            Transparent pricing. Built around how real estate actually works.
-          </h1>
-          <p className="mt-5 text-white/80 max-w-2xl text-lg">
-            Monthly content systems, listing media, and add-ons — priced individually so you can build the partnership that fits.
-          </p>
+          <Reveal>
+            <Eyebrow light>Packages & pricing</Eyebrow>
+            <h1 className="mt-3 h-display text-5xl md:text-6xl text-white max-w-3xl">
+              Transparent pricing. Built around how real estate actually works.
+            </h1>
+            <p className="mt-5 text-white/80 max-w-2xl text-lg">
+              Monthly content systems, listing media, and add-ons — priced individually so you can build the partnership that fits.
+            </p>
+          </Reveal>
         </Container>
       </section>
 
       {/* MAIN PACKAGES */}
       <Section className="!pt-16 md:!pt-20">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8" staggerChildren={0.1}>
             {packages.map((pkg) => (
-              <div
+              <StaggerChild
                 key={pkg.name}
-                className={`relative p-8 md:p-10 border flex flex-col ${
+                className={`relative p-8 md:p-10 border flex flex-col transition-all duration-500 ${
                   pkg.featured
-                    ? "bg-re-blue text-white border-re-blue"
-                    : "bg-white border-re-stone-light"
+                    ? "bg-re-blue text-white border-re-blue hover:shadow-[0_24px_60px_rgba(28,58,94,0.25)]"
+                    : "bg-white border-re-stone-light hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(28,58,94,0.08)] hover:border-re-blue/40"
                 }`}
               >
                 {pkg.featured && (
@@ -202,9 +205,9 @@ export default function PackagesPage() {
                     {pkg.cta}
                   </CTAButton>
                 </div>
-              </div>
+              </StaggerChild>
             ))}
-          </div>
+          </Stagger>
         </Container>
       </Section>
 
@@ -212,36 +215,36 @@ export default function PackagesPage() {
       <Section className="bg-white border-y border-re-stone-light">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
-            <div className="md:col-span-5">
+            <Reveal direction="left" className="md:col-span-5">
               <Eyebrow>Listing media</Eyebrow>
               <H2 className="mt-3">Listing photography & video.</H2>
               <p className="mt-5 text-re-stone leading-relaxed">
                 Editorial-grade photography paired with a horizontal listing video — every package, every time. Add vertical, drone, or both as add-ons below.
               </p>
-              <div className="relative mt-8 aspect-[4/5] overflow-hidden bg-re-stone-light">
+              <div className="relative mt-8 aspect-[4/5] overflow-hidden bg-re-stone-light group">
                 <Image
                   src="/media/listings/listing-12.png"
                   alt="Listing photography"
                   fill
                   sizes="(min-width: 768px) 40vw, 100vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
                 />
               </div>
-            </div>
-            <div className="md:col-span-7 grid grid-cols-1 gap-4">
+            </Reveal>
+            <Stagger className="md:col-span-7 grid grid-cols-1 gap-4" staggerChildren={0.08}>
               {photoPackages.map((p) => (
-                <div
+                <StaggerChild
                   key={p.name}
-                  className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 p-6 md:p-7 border border-re-stone-light bg-re-ivory hover:border-re-blue/40 transition-colors"
+                  className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 p-6 md:p-7 border border-re-stone-light bg-re-ivory hover:border-re-blue/40 hover:bg-white transition-all duration-500"
                 >
                   <div>
                     <p className="label-eyebrow">{p.name}</p>
                     <p className="mt-2 font-serif text-2xl text-re-ink">{p.details}</p>
                   </div>
                   <p className="font-serif text-3xl text-re-blue">{p.price}</p>
-                </div>
+                </StaggerChild>
               ))}
-            </div>
+            </Stagger>
           </div>
         </Container>
       </Section>
@@ -249,25 +252,27 @@ export default function PackagesPage() {
       {/* ADD-ONS */}
       <Section>
         <Container>
-          <div className="max-w-2xl mb-12">
-            <Eyebrow>Add-ons</Eyebrow>
-            <H2 className="mt-3">Add depth to any listing.</H2>
-            <p className="mt-5 text-re-stone leading-relaxed">
-              Vertical and drone are priced individually so you can scale presentation to the property — not the other way around.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Reveal>
+            <div className="max-w-2xl mb-12">
+              <Eyebrow>Add-ons</Eyebrow>
+              <H2 className="mt-3">Add depth to any listing.</H2>
+              <p className="mt-5 text-re-stone leading-relaxed">
+                Vertical and drone are priced individually so you can scale presentation to the property — not the other way around.
+              </p>
+            </div>
+          </Reveal>
+          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-4" staggerChildren={0.08}>
             {addOns.map((a) => (
-              <div
+              <StaggerChild
                 key={a.name}
-                className="p-7 border border-re-stone-light bg-re-ivory"
+                className="p-7 border border-re-stone-light bg-re-ivory hover:border-re-blue/40 hover:bg-white transition-all duration-500"
               >
                 <p className="label-eyebrow">{a.name}</p>
                 <p className="mt-2 font-serif text-3xl text-re-blue">{a.price}</p>
                 <p className="mt-3 text-sm text-re-stone leading-relaxed">{a.details}</p>
-              </div>
+              </StaggerChild>
             ))}
-          </div>
+          </Stagger>
         </Container>
       </Section>
 
@@ -275,7 +280,7 @@ export default function PackagesPage() {
       <Section dark>
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
-            <div className="md:col-span-4">
+            <Reveal className="md:col-span-4">
               <Eyebrow light>FAQ</Eyebrow>
               <H2 light className="mt-3">
                 Pricing questions.
@@ -283,10 +288,10 @@ export default function PackagesPage() {
               <p className="mt-5 text-white/70 leading-relaxed">
                 If your question isn't covered here, it's a 5-minute answer on a call.
               </p>
-            </div>
-            <div className="md:col-span-8">
+            </Reveal>
+            <Reveal className="md:col-span-8" delay={0.15}>
               <FAQAccordion items={faqs} />
-            </div>
+            </Reveal>
           </div>
         </Container>
       </Section>
@@ -294,16 +299,18 @@ export default function PackagesPage() {
       {/* FINAL CTA */}
       <Section>
         <Container>
-          <div className="max-w-3xl">
-            <Eyebrow>Next step</Eyebrow>
-            <H2 className="mt-3">Want a recommendation tailored to your agency?</H2>
-            <p className="mt-5 text-re-stone text-lg">
-              Tell us about your current content, listings volume, and goals — we'll suggest the package that actually fits.
-            </p>
-            <div className="mt-8">
-              <CTAButton href="/contact">Book a strategy call</CTAButton>
+          <Reveal>
+            <div className="max-w-3xl">
+              <Eyebrow>Next step</Eyebrow>
+              <H2 className="mt-3">Want a recommendation tailored to your agency?</H2>
+              <p className="mt-5 text-re-stone text-lg">
+                Tell us about your current content, listings volume, and goals — we'll suggest the package that actually fits.
+              </p>
+              <div className="mt-8">
+                <CTAButton href="/contact">Book a strategy call</CTAButton>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </Section>
     </>

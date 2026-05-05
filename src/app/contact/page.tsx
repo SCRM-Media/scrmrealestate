@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Container, Eyebrow } from "@/components/ui";
+import { Reveal } from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 import { SITE } from "@/lib/site";
 
@@ -14,13 +15,15 @@ export default function ContactPage() {
     <>
       <section className="bg-re-blue text-white">
         <Container className="py-20 md:py-24">
-          <Eyebrow light>Contact</Eyebrow>
-          <h1 className="mt-3 h-display text-5xl md:text-6xl text-white max-w-3xl">
-            Let's talk about how your agency shows up online.
-          </h1>
-          <p className="mt-5 text-white/80 max-w-2xl text-lg">
-            A 30-minute call is enough to map what your content and listing media should look like over the next 90 days.
-          </p>
+          <Reveal>
+            <Eyebrow light>Contact</Eyebrow>
+            <h1 className="mt-3 h-display text-5xl md:text-6xl text-white max-w-3xl">
+              Let's talk about how your agency shows up online.
+            </h1>
+            <p className="mt-5 text-white/80 max-w-2xl text-lg">
+              A 30-minute call is enough to map what your content and listing media should look like over the next 90 days.
+            </p>
+          </Reveal>
         </Container>
       </section>
 
@@ -28,12 +31,12 @@ export default function ContactPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
             {/* Form */}
-            <div className="lg:col-span-7">
+            <Reveal direction="left" className="lg:col-span-7">
               <ContactForm />
-            </div>
+            </Reveal>
 
             {/* Info panel */}
-            <aside className="lg:col-span-5">
+            <Reveal direction="right" delay={0.15} as="aside" className="lg:col-span-5">
               <div className="bg-re-ivory border border-re-stone-light p-8 md:p-10">
                 <Eyebrow>Direct contact</Eyebrow>
                 <ul className="mt-5 space-y-5">
@@ -92,7 +95,7 @@ export default function ContactPage() {
                   We service agencies Australia-wide. Most production happens in Sydney metro; for regional/interstate clients, filming is planned in batches.
                 </p>
               </div>
-            </aside>
+            </Reveal>
           </div>
         </Container>
       </section>

@@ -1,0 +1,105 @@
+"use client";
+
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+
+export type LightboxItem =
+  | { type: "video"; src: string; aspect?: "9/16" | "16/9" | string }
+  | { type: "image"; src: string; alt?: string };
+
+export default function Lightbox({
+  item,
+  onClose,
+}: {
+  item: LightboxItem | null;
+  onClose: () => void;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!item) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [item, onClose]);
+
+  // Auto-play with audio when video opens
+  useEffect(() => {
+    if (item?.type === "video" && videoRef.current) {
+      videoRef.current.muted = false;
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {
+        // Some browsers block unmuted autoplay; fall back to muted
+        if (videoRef.current) {
+          videoRef.current.muted = true;
+          videoRef.current.play().catch(() => {});
+        }
+      });
+    }
+  }, [item]);
+
+  return (
+    <AnimatePresence>
+      {item && (
+        <motion.div
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/85 backdrop-blur-sm p-4 md:p-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={onClose}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Media preview"
+        >
+          {/* Close button */}
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="absolute top-5 right-5 md:top-7 md:right-7 inline-flex items-center justify-center h-12 w-12 border border-white/30 text-white hover:border-white hover:bg-white/10 transition-colors z-10"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+              <line x1="6" y1="6" x2="18" y2="18" />
+              <line x1="18" y1="6" x2="6" y2="18" />
+            </svg>
+          </button>
+
+          <motion.div
+            className="relative max-h-[90vh] max-w-[95vw] flex items-center justify-center"
+            initial={{ scale: 0.96, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.96, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {item.type === "video" ? (
+              <video
+                ref={videoRef}
+                src={item.src}
+                controls
+                playsInline
+                className={`max-h-[90vh] max-w-[95vw] bg-black ${
+                  item.aspect === "9/16" ? "aspect-[9/16] w-auto" : ""
+                }`}
+              />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={item.src}
+                alt={item.alt ?? ""}
+                className="max-h-[90vh] max-w-[95vw] object-contain"
+              />
+            )}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
